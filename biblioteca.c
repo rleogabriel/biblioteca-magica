@@ -3,12 +3,18 @@
 #include <string.h>
 #include <stdio.h>
 
-void menu() {
+void menu(LivroMagico **biblioteca) {
+    int i, ocupados = 0;
+    for(i = 0; i < MAX_LIVROS; i++) {
+        if(biblioteca[i] != NULL) ocupados++;
+    }
+
     printf("\n");
     printf(AMARELO "=====================================================\n" RESET);
     printf(AMARELO "||" CIANO "             * INVENTARIO MAGICO * " AMARELO "||\n" RESET);
     printf(AMARELO "||" CIANO "           Biblioteca Magica de RPG              " AMARELO "||\n" RESET);
     printf(AMARELO "=====================================================\n" RESET);
+    printf("||  Status do Grimorio: " CIANO "[%02d/%02d slots]           " RESET "||\n", ocupados, MAX_LIVROS);
     printf(AMARELO "||                                                 ||\n" RESET);
     printf(AMARELO "||" RESET "  1. [Cadastrar] Novo Livro Magico               " AMARELO "||\n" RESET);
     printf(AMARELO "||" RESET "  2. [Deletar]   Incinerar Registro de Livro     " AMARELO "||\n" RESET);

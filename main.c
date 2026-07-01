@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     int idBusca;
     int opcao;
     do {
-        menu();
+        menu(biblioteca);
         scanf("%d%*c", &opcao);
         printf("\n");
 
