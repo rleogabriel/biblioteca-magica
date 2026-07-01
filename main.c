@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "biblioteca.h"
 
 LivroMagico *biblioteca[MAX_LIVROS];
@@ -12,7 +14,7 @@ int main(int argc, char *argv[]) {
     char *nomeArquivo = argv[1];
     
     inicializarVetor(biblioteca);
-    
+
     int idBusca;
     int opcao;
     do {
@@ -31,6 +33,18 @@ int main(int argc, char *argv[]) {
                 printf("Digite o ID do livro que deseja excluir: ");
                 scanf("%d", &idBusca);
                 deletarLivro(biblioteca, idBusca);
+                break;
+
+            case 3:
+                printf("--- INSPECIONANDO LIVRO ---\n");
+                printf("Digite o ID do livro que deseja buscar: ");
+                mostrarLivro(biblioteca, idBusca);
+                break;
+
+            case 4:
+                printf("--- EDITANDO LIVRO ---\n");
+                printf("Digite o ID do livro que deseja alterar: ");
+                editarLivro(biblioteca, idBusca);
                 break;
         }
 
