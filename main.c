@@ -46,6 +46,11 @@ int main(int argc, char *argv[]) {
                 printf("Digite o ID do livro que deseja alterar: ");
                 editarLivro(biblioteca, idBusca);
                 break;
+
+            case 5:
+                printf("--- LISTA DE TITULOS MAGICOS ---\n");
+                listarTitulos(biblioteca);
+                break;
         }
 
     } while (opcao != 6);

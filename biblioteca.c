@@ -193,3 +193,31 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
     }
 }
 
+void listarTitulos(LivroMagico **biblioteca){
+    int i;
+    int contador = 0;
+    for (i = 0; i < MAX_LIVROS; i++)
+    {
+        if (biblioteca[i] != NULL){
+            printf("[Id]: %d    [Titulo]: %s\n", biblioteca[i]->id, biblioteca[i]->titulo);
+            contador++;
+        }
+    }
+    printf("Numero total de livros : %d", contador);
+}
+
+void criptografar(char* str){
+    int i;
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        str[i] = (char)(255 - (unsigned char)str[i]);
+    }
+}
+
+void descriptografar(char* str){
+    int i;
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        str[i] = (char)(255 - (unsigned char)str[i]);
+    }
+}
