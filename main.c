@@ -12,7 +12,8 @@ int main(int argc, char *argv[]) {
     char *nomeArquivo = argv[1];
     
     inicializarVetor(biblioteca);
-
+    
+    int idBusca;
     int opcao;
     do {
         menu();
@@ -23,6 +24,13 @@ int main(int argc, char *argv[]) {
             case 1:
                 printf("--- CADASTRANDO NOVO LIVRO ---\n");
                 cadastrarLivro(biblioteca);
+                break;
+
+            case 2:
+                printf("--- DELETANDO LIVRO ---\n");
+                printf("Digite o ID do livro que deseja excluir: ");
+                scanf("%d", &idBusca);
+                deletarLivro(biblioteca, idBusca);
                 break;
         }
 

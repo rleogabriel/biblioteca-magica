@@ -39,7 +39,8 @@ void cadastrarLivro(LivroMagico **biblioteca){
         } 
     }
     if(flag == 0) {
-        printf("Inventário Cheio");
+        printf("Inventario Cheio");
+        return;
     }
     printf("\n");
 
@@ -57,5 +58,22 @@ void cadastrarLivro(LivroMagico **biblioteca){
 
     printf("Data de Escrita do Livro (DD/MM/AAAA): ");
         scanf("%d/%d/%d", &biblioteca[i]->data_escrita.dia, &biblioteca[i]->data_escrita.mes, &biblioteca[i]->data_escrita.ano);
+}
+
+void deletarLivro(LivroMagico **biblioteca, int idBusca){
+    int i;
+    int flag = 0;
+    for (i = 0; i < MAX_LIVROS; i++)
+    {
+        if(biblioteca[i] != NULL && biblioteca[i]->id == idBusca){
+            free(biblioteca[i]);
+            biblioteca[i] = NULL; 
+            flag = 1;
+            printf("Livro Deletado com Sucesso!\n");
+        } 
+    }
+    if(flag == 0){
+        printf("ID Nao Encontrado...\n");
+    }
 }
 
