@@ -67,16 +67,19 @@ void cadastrarLivro(LivroMagico **biblioteca){
     biblioteca[i]->id = idTemporario;
 
     printf("Titulo do Livro: ");
-        scanf(" %[^\n]", biblioteca[i]->titulo);
+        scanf(" %99[^\n]", biblioteca[i]->titulo);
 
     printf("Nome do Autor: ");
-        scanf(" %[^\n]", biblioteca[i]->autor.nome);
+        scanf(" %99[^\n]", biblioteca[i]->autor.nome);
 
     printf("Data de Nascimento do Autor (DD/MM/AAAA): ");
         scanf("%d/%d/%d", &biblioteca[i]->autor.data_nascimento.dia, &biblioteca[i]->autor.data_nascimento.mes, &biblioteca[i]->autor.data_nascimento.ano);
 
     printf("Data de Escrita do Livro (DD/MM/AAAA): ");
         scanf("%d/%d/%d", &biblioteca[i]->data_escrita.dia, &biblioteca[i]->data_escrita.mes, &biblioteca[i]->data_escrita.ano);
+
+printf("Raridade do Livro: ");
+        scanf(" %29[^\n]", biblioteca[i]->raridade);
 }
 
 void deletarLivro(LivroMagico **biblioteca, int idBusca){
@@ -112,6 +115,7 @@ void mostrarLivro(LivroMagico **biblioteca, int idBusca) {
             printf(AMARELO " [Autor]        : " RESET "%s\n", biblioteca[i]->autor.nome);
             printf(AMARELO " [Nasc. Autor]  : " RESET "%02d/%02d/%04d\n", biblioteca[i]->autor.data_nascimento.dia, biblioteca[i]->autor.data_nascimento.mes, biblioteca[i]->autor.data_nascimento.ano);
             printf(AMARELO " [Data Escrita] : " RESET "%02d/%02d/%04d\n", biblioteca[i]->data_escrita.dia, biblioteca[i]->data_escrita.mes, biblioteca[i]->data_escrita.ano);
+            printf(AMARELO " [Raridade]     : " RESET "%s\n", biblioteca[i]->raridade);
             printf(CIANO "======================================================\n\n" RESET);
             flag = 1;
             break;
@@ -138,7 +142,8 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
             printf(AMARELO "||" RESET "  2. [Nome do Autor]                  " AMARELO "||\n" RESET);
             printf(AMARELO "||" RESET "  3. [Data de Nascimento do Autor]    " AMARELO "||\n" RESET);
             printf(AMARELO "||" RESET "  4. [Data do Livro]                  " AMARELO "||\n" RESET);
-            printf(AMARELO "||" VERMELHO "  5. [Voltar]                         " AMARELO "||\n" RESET);
+            printf(AMARELO "||" RESET "  5. [Raridade do Livro]              " AMARELO "||\n" RESET);
+            printf(AMARELO "||" VERMELHO "  6. [Voltar]                      " AMARELO "||\n" RESET);
             printf(AMARELO "||                                      ||\n" RESET);
             printf(AMARELO "==========================================\n" RESET);
             printf("Qual informacao deseja modificar meu Lorde?\n");
@@ -149,7 +154,7 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
     case 1:
             strcpy(nome, biblioteca[i]->titulo);
             printf("Digite o nome do livro que deseja colocar:");
-            scanf(" %[^\n]", biblioteca[i]->titulo);
+            scanf(" %99[^\n]", biblioteca[i]->titulo);
             printf("\n");
             printf(VERDE "======================================================\n" RESET);
             printf(VERDE "                INFORMACOES ALTERADAS                 \n" RESET);
@@ -159,9 +164,9 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
             printf(VERDE "======================================================\n\n" RESET);
         break;
     case 2:
-    strcpy(nome, biblioteca[i]->autor.nome);
+            strcpy(nome, biblioteca[i]->autor.nome);
             printf("Digite o nome do autor que deseja colocar:");
-            scanf(" %[^\n]", biblioteca[i]->autor.nome);
+            scanf(" %99[^\n]", biblioteca[i]->autor.nome);
             printf("\n");
             printf(VERDE "======================================================\n" RESET);
             printf(VERDE "                INFORMACOES ALTERADAS                 \n" RESET);
@@ -185,7 +190,7 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
             printf(VERDE "======================================================\n\n" RESET);
         break;
     case 4:
-    antiga.dia = biblioteca[i]->data_escrita.dia;
+        antiga.dia = biblioteca[i]->data_escrita.dia;
         antiga.mes = biblioteca[i]->data_escrita.mes;
         antiga.ano = biblioteca[i]->data_escrita.ano;
             printf("Digite a nova data do livro (Formato: DD/MM/AAAA)");
@@ -198,8 +203,24 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
             printf(AMARELO " [Data Nova]   : " RESET "%02d/%02d/%04d\n", biblioteca[i]->data_escrita.dia, biblioteca[i]->data_escrita.mes, biblioteca[i]->data_escrita.ano);
             printf(VERDE "======================================================\n\n" RESET);
         break;
-    case 5:
-    return;
+        case 5:
+            strcpy(nome, biblioteca[i]->raridade);
+            printf("Digite a raridade do livro que deseja colocar:");
+            scanf(" %29[^\n]", biblioteca[i]->raridade);
+            printf("\n");
+            printf(VERDE "======================================================\n" RESET);
+            printf(VERDE "                INFORMACOES ALTERADAS                 \n" RESET);
+            printf(VERDE "======================================================\n" RESET);
+            printf(AMARELO " [Raridade Antiga] : " RESET "%s\n", nome);
+            printf(AMARELO " [Raridade Nova]   : " RESET "%s\n", biblioteca[i]->raridade);
+            printf(VERDE "======================================================\n\n" RESET);
+        break;
+
+        case 6:
+            return;
+
+        default:
+            printf(VERMELHO "Opcao invalida!\n" RESET);
         break;
     }
     flag = 1; 
@@ -268,6 +289,8 @@ void salvarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo){
                     biblioteca[i]->data_escrita.mes, 
                     biblioteca[i]->data_escrita.ano);
 
+            fprintf(arq, "%s\n", biblioteca[i]->raridade);
+
             descriptografar(biblioteca[i]->titulo);
         }
     }
@@ -296,6 +319,8 @@ void carregarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo) {
         fscanf(arq, "%d %d %d\n", &biblioteca[i]->autor.data_nascimento.dia, &biblioteca[i]->autor.data_nascimento.mes, &biblioteca[i]->autor.data_nascimento.ano);
                                   
         fscanf(arq, "%d %d %d\n", &biblioteca[i]->data_escrita.dia, &biblioteca[i]->data_escrita.mes, &biblioteca[i]->data_escrita.ano);
+
+         fscanf(arq, " %[^\n]\n", biblioteca[i]->raridade);
 
         descriptografar(biblioteca[i]->titulo);
         i++;

@@ -25,6 +25,7 @@ typedef struct {
     char titulo[100];
     Autor autor;
     Data data_escrita;
+    char raridade[30];
 } LivroMagico;
 
 // Protótipos das funções
