@@ -39,12 +39,14 @@ int main(int argc, char *argv[]) {
             case 3:
                 printf("--- INSPECIONANDO LIVRO ---\n");
                 printf("Digite o ID do livro que deseja buscar: ");
+                scanf("%d", &idBusca);
                 mostrarLivro(biblioteca, idBusca);
                 break;
 
             case 4:
                 printf("--- EDITANDO LIVRO ---\n");
                 printf("Digite o ID do livro que deseja alterar: ");
+                scanf("%d", &idBusca);
                 editarLivro(biblioteca, idBusca);
                 break;
 

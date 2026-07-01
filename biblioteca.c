@@ -5,19 +5,19 @@
 
 void menu() {
     printf("\n");
-    printf("=====================================================\n");
-    printf("||             * INVENTARIO MAGICO *               ||\n");
-    printf("||           Biblioteca Magica de RPG              ||\n");
-    printf("=====================================================\n");
-    printf("||                                                 ||\n");
-    printf("||  1. [Cadastrar] Novo Livro Magico               ||\n");
-    printf("||  2. [Deletar]   Incinerar Registro de Livro     ||\n");
-    printf("||  3. [Mostrar]   Inspecionar Detalhes do Livro   ||\n");
-    printf("||  4. [Editar]    Alterar Atributos do Livro      ||\n");
-    printf("||  5. [Listar]    Ver Catalogo de Titulos         ||\n");
-    printf("||  6. [Sair]      Salvar e Fechar o Inventario    ||\n");
-    printf("||                                                 ||\n");
-    printf("=====================================================\n");
+    printf(AMARELO "=====================================================\n" RESET);
+    printf(AMARELO "||" CIANO "             * INVENTARIO MAGICO * " AMARELO "||\n" RESET);
+    printf(AMARELO "||" CIANO "           Biblioteca Magica de RPG              " AMARELO "||\n" RESET);
+    printf(AMARELO "=====================================================\n" RESET);
+    printf(AMARELO "||                                                 ||\n" RESET);
+    printf(AMARELO "||" RESET "  1. [Cadastrar] Novo Livro Magico               " AMARELO "||\n" RESET);
+    printf(AMARELO "||" RESET "  2. [Deletar]   Incinerar Registro de Livro     " AMARELO "||\n" RESET);
+    printf(AMARELO "||" RESET "  3. [Mostrar]   Inspecionar Detalhes do Livro   " AMARELO "||\n" RESET);
+    printf(AMARELO "||" RESET "  4. [Editar]    Alterar Atributos do Livro      " AMARELO "||\n" RESET);
+    printf(AMARELO "||" RESET "  5. [Listar]    Ver Catalogo de Titulos         " AMARELO "||\n" RESET);
+    printf(AMARELO "||" VERMELHO "  6. [Sair]      Salvar e Fechar o Inventario    " AMARELO "||\n" RESET);
+    printf(AMARELO "||                                                 ||\n" RESET);
+    printf(AMARELO "=====================================================\n" RESET);
     printf("O que deseja fazer, Mestre? Escolha uma opcao: ");
 }
 
@@ -37,10 +37,11 @@ void cadastrarLivro(LivroMagico **biblioteca){
         if(biblioteca[i] == NULL){
             biblioteca[i] = (LivroMagico*) malloc(sizeof(LivroMagico));
             flag = 1;
+            break;
         } 
     }
     if(flag == 0) {
-        printf("Inventario Cheio");
+        printf(VERMELHO "Inventario Cheio\n" RESET);
         return;
     }
     printf("\n");
@@ -70,12 +71,12 @@ void deletarLivro(LivroMagico **biblioteca, int idBusca){
             free(biblioteca[i]);
             biblioteca[i] = NULL; 
             flag = 1;
-            printf("Livro Deletado com Sucesso!\n");
+            printf(VERDE "Livro Deletado com Sucesso!\n" RESET);
             break;
         } 
     }
     if(flag == 0){
-        printf("\nO livro com o id: %d nao foi encontrado...\n\n", idBusca);
+        printf(VERMELHO "\nO livro com o id: %d nao foi encontrado...\n\n" RESET, idBusca);
     }
 }
 
@@ -86,21 +87,21 @@ void mostrarLivro(LivroMagico **biblioteca, int idBusca) {
     {
         if (biblioteca[i] != NULL && biblioteca[i]->id == idBusca) {
             printf("\n");
-            printf("======================================================\n");
-            printf("             📖 INFORMACOES DO LIVRO 📖              \n");
-            printf("======================================================\n");
-            printf(" [ID]           : %04d\n", biblioteca[i]->id);
-            printf(" [Titulo]       : %s\n", biblioteca[i]->titulo);
-            printf(" [Autor]        : %s\n", biblioteca[i]->autor.nome);
-            printf(" [Nasc. Autor]  : %02d/%02d/%04d\n", biblioteca[i]->autor.data_nascimento.dia, biblioteca[i]->autor.data_nascimento.mes, biblioteca[i]->autor.data_nascimento.ano);
-            printf(" [Data Escrita] : %02d/%02d/%04d\n", biblioteca[i]->data_escrita.dia, biblioteca[i]->data_escrita.mes, biblioteca[i]->data_escrita.ano);
-            printf("======================================================\n\n");
+            printf(CIANO "======================================================\n" RESET);
+            printf(CIANO "             📖 INFORMACOES DO LIVRO 📖              \n" RESET);
+            printf(CIANO "======================================================\n" RESET);
+            printf(AMARELO " [ID]           : " RESET "%04d\n", biblioteca[i]->id);
+            printf(AMARELO " [Titulo]       : " RESET "%s\n", biblioteca[i]->titulo);
+            printf(AMARELO " [Autor]        : " RESET "%s\n", biblioteca[i]->autor.nome);
+            printf(AMARELO " [Nasc. Autor]  : " RESET "%02d/%02d/%04d\n", biblioteca[i]->autor.data_nascimento.dia, biblioteca[i]->autor.data_nascimento.mes, biblioteca[i]->autor.data_nascimento.ano);
+            printf(AMARELO " [Data Escrita] : " RESET "%02d/%02d/%04d\n", biblioteca[i]->data_escrita.dia, biblioteca[i]->data_escrita.mes, biblioteca[i]->data_escrita.ano);
+            printf(CIANO "======================================================\n\n" RESET);
             flag = 1;
             break;
         }
     }
     if (flag == 0) {
-        printf("\nO livro com o id: %d nao foi encontrado...\n\n", idBusca);
+        printf(VERMELHO "\nO livro com o id: %d nao foi encontrado...\n\n" RESET, idBusca);
     }
 }
 
@@ -112,17 +113,17 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
     for (i = 0; i < MAX_LIVROS; i++) 
     {
         if (biblioteca[i] != NULL && biblioteca[i]->id == idBusca) {
-            printf("==========================================\n");
-            printf("||          Alteracao de Dados          ||\n");
-            printf("==========================================\n");
-            printf("||                                      ||\n");
-            printf("||  1. [Nome do Livro]                  ||\n");
-            printf("||  2. [Nome do Autor]                  ||\n");
-            printf("||  3. [Data de Nascimento do Autor]    ||\n");
-            printf("||  4. [Data do Livro]                  ||\n");
-            printf("||  5. [Voltar]                         ||\n");
-            printf("||                                      ||\n");
-            printf("==========================================\n");
+            printf(AMARELO "==========================================\n" RESET);
+            printf(AMARELO "||          Alteracao de Dados          ||\n" RESET);
+            printf(AMARELO "==========================================\n" RESET);
+            printf(AMARELO "||                                      ||\n" RESET);
+            printf(AMARELO "||" RESET "  1. [Nome do Livro]                  " AMARELO "||\n" RESET);
+            printf(AMARELO "||" RESET "  2. [Nome do Autor]                  " AMARELO "||\n" RESET);
+            printf(AMARELO "||" RESET "  3. [Data de Nascimento do Autor]    " AMARELO "||\n" RESET);
+            printf(AMARELO "||" RESET "  4. [Data do Livro]                  " AMARELO "||\n" RESET);
+            printf(AMARELO "||" VERMELHO "  5. [Voltar]                         " AMARELO "||\n" RESET);
+            printf(AMARELO "||                                      ||\n" RESET);
+            printf(AMARELO "==========================================\n" RESET);
             printf("Qual informacao deseja modificar meu Lorde?\n");
             scanf("%d", &escolha);
 
@@ -133,24 +134,24 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
             printf("Digite o nome do livro que deseja colocar:");
             scanf(" %[^\n]", biblioteca[i]->titulo);
             printf("\n");
-            printf("======================================================\n");
-            printf("             ♻ INFORMACOES ALTERADAS ♻               \n");
-            printf("======================================================\n");
-            printf(" [Titulo Antigo] : %s\n", nome);
-            printf(" [Titulo Novo]   : %s\n", biblioteca[i]->titulo);
-            printf("======================================================\n\n");
+            printf(VERDE "======================================================\n" RESET);
+            printf(VERDE "             ♻ INFORMACOES ALTERADAS ♻               \n" RESET);
+            printf(VERDE "======================================================\n" RESET);
+            printf(AMARELO " [Titulo Antigo] : " RESET "%s\n", nome);
+            printf(AMARELO " [Titulo Novo]   : " RESET "%s\n", biblioteca[i]->titulo);
+            printf(VERDE "======================================================\n\n" RESET);
         break;
     case 2:
     strcpy(nome, biblioteca[i]->autor.nome);
             printf("Digite o nome do autor que deseja colocar:");
             scanf(" %[^\n]", biblioteca[i]->autor.nome);
             printf("\n");
-            printf("======================================================\n");
-            printf("             ♻ INFORMACOES ALTERADAS ♻               \n");
-            printf("======================================================\n");
-            printf(" [Autor Antigo] : %s\n", nome);
-            printf(" [Autor Novo]   : %s\n", biblioteca[i]->autor.nome);
-            printf("======================================================\n\n");
+            printf(VERDE "======================================================\n" RESET);
+            printf(VERDE "             ♻ INFORMACOES ALTERADAS ♻               \n" RESET);
+            printf(VERDE "======================================================\n" RESET);
+            printf(AMARELO " [Autor Antigo] : " RESET "%s\n", nome);
+            printf(AMARELO " [Autor Novo]   : " RESET "%s\n", biblioteca[i]->autor.nome);
+            printf(VERDE "======================================================\n\n" RESET);
         break;
     case 3:
         antiga.dia = biblioteca[i]->autor.data_nascimento.dia;
@@ -159,12 +160,12 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
             printf("Digite a nova data de nascimento do autor: (Formato: DD/MM/AAAA)");
             scanf("%d/%d/%d", &biblioteca[i]->autor.data_nascimento.dia, &biblioteca[i]->autor.data_nascimento.mes, &biblioteca[i]->autor.data_nascimento.ano);
             printf("\n");
-            printf("======================================================\n");
-            printf("             ♻ INFORMACOES ALTERADAS ♻               \n");
-            printf("======================================================\n");
-            printf(" [Data antiga] : %02d/%02d/%04d\n", antiga.dia, antiga.mes, antiga.ano);
-            printf(" [Data Nova]   : %02d/%02d/%04d\n", biblioteca[i]->autor.data_nascimento.dia, biblioteca[i]->autor.data_nascimento.mes, biblioteca[i]->autor.data_nascimento.ano);
-            printf("======================================================\n\n");
+            printf(VERDE "======================================================\n" RESET);
+            printf(VERDE "             ♻ INFORMACOES ALTERADAS ♻               \n" RESET);
+            printf(VERDE "======================================================\n" RESET);
+            printf(AMARELO " [Data antiga] : " RESET "%02d/%02d/%04d\n", antiga.dia, antiga.mes, antiga.ano);
+            printf(AMARELO " [Data Nova]   : " RESET "%02d/%02d/%04d\n", biblioteca[i]->autor.data_nascimento.dia, biblioteca[i]->autor.data_nascimento.mes, biblioteca[i]->autor.data_nascimento.ano);
+            printf(VERDE "======================================================\n\n" RESET);
         break;
     case 4:
     antiga.dia = biblioteca[i]->data_escrita.dia;
@@ -173,12 +174,12 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
             printf("Digite a nova data do livro (Formato: DD/MM/AAAA)");
             scanf("%d/%d/%d", &biblioteca[i]->data_escrita.dia, &biblioteca[i]->data_escrita.mes, &biblioteca[i]->data_escrita.ano);
             printf("\n");
-            printf("======================================================\n");
-            printf("             ♻ INFORMACOES ALTERADAS ♻               \n");
-            printf("======================================================\n");
-            printf(" [Data antiga] : %02d/%02d/%04d\n", antiga.dia, antiga.mes, antiga.ano);
-            printf(" [Data Nova]   : %02d/%02d/%04d\n", biblioteca[i]->data_escrita.dia, biblioteca[i]->data_escrita.mes, biblioteca[i]->data_escrita.ano);
-            printf("======================================================\n\n");
+            printf(VERDE "======================================================\n" RESET);
+            printf(VERDE "             ♻ INFORMACOES ALTERADAS ♻               \n" RESET);
+            printf(VERDE "======================================================\n" RESET);
+            printf(AMARELO " [Data antiga] : " RESET "%02d/%02d/%04d\n", antiga.dia, antiga.mes, antiga.ano);
+            printf(AMARELO " [Data Nova]   : " RESET "%02d/%02d/%04d\n", biblioteca[i]->data_escrita.dia, biblioteca[i]->data_escrita.mes, biblioteca[i]->data_escrita.ano);
+            printf(VERDE "======================================================\n\n" RESET);
         break;
     case 5:
     return;
@@ -189,7 +190,7 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
     }
     }
     if (flag == 0) {
-        printf("\nO livro com o id: %d nao foi encontrado...\n\n", idBusca);
+        printf(VERMELHO "\nO livro com o id: %d nao foi encontrado...\n\n" RESET, idBusca);
     }
 }
 
@@ -199,11 +200,11 @@ void listarTitulos(LivroMagico **biblioteca){
     for (i = 0; i < MAX_LIVROS; i++)
     {
         if (biblioteca[i] != NULL){
-            printf("[Id]: %d    [Titulo]: %s\n", biblioteca[i]->id, biblioteca[i]->titulo);
+            printf(AMARELO "[Id]:" RESET " %d    " AMARELO "[Titulo]:" RESET " %s\n", biblioteca[i]->id, biblioteca[i]->titulo);
             contador++;
         }
     }
-    printf("Numero total de livros : %d", contador);
+    printf(VERDE "Numero total de livros : %d\n" RESET, contador);
 }
 
 void criptografar(char* str){
@@ -228,7 +229,7 @@ void salvarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo){
     arq = fopen(nomeArquivo, "w");
 
     if(arq==NULL) {
-		printf("OH NAO! Houve um problema ao abrir o pergaminho meu rei!\n");
+		printf(VERMELHO "OH NAO! Houve um problema ao abrir o pergaminho meu rei!\n" RESET);
 		return;
 	}
 
@@ -254,13 +255,13 @@ void salvarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo){
         }
     }
     fclose(arq);
-    printf("\n📜 Progresso salvo com sucesso no pergaminho : '%s'!\n", nomeArquivo);
+    printf(VERDE "\n📜 Progresso salvo com sucesso no pergaminho : '%s'!\n" RESET, nomeArquivo);
 }
 
 void carregarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo) {
     FILE *arq = fopen(nomeArquivo, "r");
     if (arq == NULL) {
-        printf("\nNenhum pergaminho de save encontrado. Iniciando um novo jogo!\n");
+        printf(AMARELO "\nNenhum pergaminho de save encontrado. Iniciando um novo jogo!\n" RESET);
         return; 
     }
 
@@ -284,8 +285,5 @@ void carregarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo) {
     }
     
     fclose(arq);
-    printf("\n✅ Pergaminho carregado com sucesso! %d livro(s) restaurado(s)!\n", i);
+    printf(VERDE "\n✅ Pergaminho carregado com sucesso! %d livro(s) restaurado(s)!\n " RESET, i);
 }
-
-
-

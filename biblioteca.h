@@ -1,6 +1,11 @@
 #ifndef BIBLIOTECA_H
 #define BIBLIOTECA_H
 #define MAX_LIVROS 100
+#define RESET     "\033[0m"
+#define VERMELHO  "\033[31m"
+#define VERDE     "\033[32m"
+#define AMARELO   "\033[33m"
+#define CIANO     "\033[36m"
 
 // Structs
 
