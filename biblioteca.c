@@ -192,7 +192,7 @@ void editarLivro(LivroMagico **biblioteca, int idBusca){
             scanf("%d/%d/%d", &biblioteca[i]->data_escrita.dia, &biblioteca[i]->data_escrita.mes, &biblioteca[i]->data_escrita.ano);
             printf("\n");
             printf(VERDE "======================================================\n" RESET);
-            printf(VERDE "                INFORMACOES ALTERADAS ♻               \n" RESET);
+            printf(VERDE "                INFORMACOES ALTERADAS                 \n" RESET);
             printf(VERDE "======================================================\n" RESET);
             printf(AMARELO " [Data antiga] : " RESET "%02d/%02d/%04d\n", antiga.dia, antiga.mes, antiga.ano);
             printf(AMARELO " [Data Nova]   : " RESET "%02d/%02d/%04d\n", biblioteca[i]->data_escrita.dia, biblioteca[i]->data_escrita.mes, biblioteca[i]->data_escrita.ano);
