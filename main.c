@@ -68,5 +68,6 @@ int main(int argc, char *argv[]) {
 
     } while (opcao != 6);
 
+    liberarBiblioteca(biblioteca);
     return 0;
 }

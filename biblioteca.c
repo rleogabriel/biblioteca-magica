@@ -293,3 +293,13 @@ void carregarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo) {
     fclose(arq);
     printf(VERDE "\n✅ Pergaminho carregado com sucesso! %d livro(s) restaurado(s)!\n " RESET, i);
 }
+
+void liberarBiblioteca(LivroMagico **biblioteca) {
+    int i;
+    for (i = 0; i < MAX_LIVROS; i++) {
+        if (biblioteca[i] != NULL) {
+            free(biblioteca[i]);
+            biblioteca[i] = NULL;
+        }
+    }
+}

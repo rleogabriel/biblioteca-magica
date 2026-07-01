@@ -40,5 +40,6 @@ void salvarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo);
 void carregarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo);
 void criptografar(char* str);
 void descriptografar(char* str);
+void liberarBiblioteca(LivroMagico **biblioteca);
 
 #endif
