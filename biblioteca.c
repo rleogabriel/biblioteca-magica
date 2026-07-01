@@ -53,9 +53,6 @@ void cadastrarLivro(LivroMagico **biblioteca){
     }
     printf("\n");
 
-    printf("ID do Livro: ");
-        scanf("%d%*c", &biblioteca[i]->id);
-
         printf("ID do Livro: ");
         scanf("%d%*c", &idTemporario);
 
@@ -275,7 +272,7 @@ void salvarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo){
         }
     }
     fclose(arq);
-    printf(VERDE "\n📜 Progresso salvo com sucesso no pergaminho : '%s'!\n" RESET, nomeArquivo);
+    printf(VERDE "\n Progresso salvo com sucesso no pergaminho : '%s'!\n" RESET, nomeArquivo);
 }
 
 void carregarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo) {
@@ -305,7 +302,7 @@ void carregarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo) {
     }
     
     fclose(arq);
-    printf(VERDE "\n✅ Pergaminho carregado com sucesso! %d livro(s) restaurado(s)!\n " RESET, i);
+    printf(VERDE "\n Pergaminho carregado com sucesso! %d livro(s) restaurado(s)!\n " RESET, i);
 }
 
 void liberarBiblioteca(LivroMagico **biblioteca) {
