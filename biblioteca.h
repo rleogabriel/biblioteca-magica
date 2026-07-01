@@ -29,7 +29,7 @@ typedef struct {
 
 // Protótipos das funções
 
-void menu();
+void menu(LivroMagico **biblioteca);
 void inicializarVetor(LivroMagico **biblioteca);
 void cadastrarLivro(LivroMagico **biblioteca);
 void deletarLivro(LivroMagico **biblioteca, int id);

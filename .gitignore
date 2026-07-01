@@ -3,6 +3,8 @@
 
 # Object files
 *.o
+programa_biblioteca
+*.txt
 *.ko
 *.obj
 *.elf
