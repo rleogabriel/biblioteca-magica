@@ -36,7 +36,8 @@ void inicializarVetor(LivroMagico **biblioteca){
 }
 
 void cadastrarLivro(LivroMagico **biblioteca){
-    int i;
+    int i, j;
+    int idTemporario;
     int flag = 0;
     for (i = 0; i < MAX_LIVROS; i++)
     {
@@ -54,6 +55,19 @@ void cadastrarLivro(LivroMagico **biblioteca){
 
     printf("ID do Livro: ");
         scanf("%d%*c", &biblioteca[i]->id);
+
+        printf("ID do Livro: ");
+        scanf("%d%*c", &idTemporario);
+
+    for (j = 0; j < MAX_LIVROS; j++) {
+        if (biblioteca[j] != NULL && j != i && biblioteca[j]->id == idTemporario) {
+            printf(VERMELHO "Erro: Ja existe um livro registrado com o ID %d!\n" RESET, idTemporario);
+            free(biblioteca[i]);
+            biblioteca[i] = NULL;
+            return; 
+        }
+    }
+    biblioteca[i]->id = idTemporario;
 
     printf("Titulo do Livro: ");
         scanf(" %[^\n]", biblioteca[i]->titulo);
