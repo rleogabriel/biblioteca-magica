@@ -221,3 +221,71 @@ void descriptografar(char* str){
         str[i] = (char)(255 - (unsigned char)str[i]);
     }
 }
+
+void salvarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo){
+    int i;
+    FILE * arq = NULL;
+    arq = fopen(nomeArquivo, "w");
+
+    if(arq==NULL) {
+		printf("OH NAO! Houve um problema ao abrir o pergaminho meu rei!\n");
+		return;
+	}
+
+    for (i = 0; i < MAX_LIVROS; i++)
+    {
+        if (biblioteca[i] != NULL){
+            criptografar(biblioteca[i]->titulo);
+            fprintf(arq, "%d\n", biblioteca[i]->id);
+            fprintf(arq, "%s\n", biblioteca[i]->titulo);
+            fprintf(arq, "%s\n", biblioteca[i]->autor.nome);
+            
+            fprintf(arq, "%d %d %d\n", 
+                    biblioteca[i]->autor.data_nascimento.dia, 
+                    biblioteca[i]->autor.data_nascimento.mes, 
+                    biblioteca[i]->autor.data_nascimento.ano);
+                    
+            fprintf(arq, "%d %d %d\n", 
+                    biblioteca[i]->data_escrita.dia, 
+                    biblioteca[i]->data_escrita.mes, 
+                    biblioteca[i]->data_escrita.ano);
+
+            descriptografar(biblioteca[i]->titulo);
+        }
+    }
+    fclose(arq);
+    printf("\n📜 Progresso salvo com sucesso no pergaminho : '%s'!\n", nomeArquivo);
+}
+
+void carregarBiblioteca(LivroMagico **biblioteca, const char *nomeArquivo) {
+    FILE *arq = fopen(nomeArquivo, "r");
+    if (arq == NULL) {
+        printf("\nNenhum pergaminho de save encontrado. Iniciando um novo jogo!\n");
+        return; 
+    }
+
+    int i = 0;
+    int idTemp;
+
+    while (i < MAX_LIVROS && fscanf(arq, "%d\n", &idTemp) == 1) {
+        
+        biblioteca[i] = (LivroMagico*) malloc(sizeof(LivroMagico));
+        biblioteca[i]->id = idTemp;
+        
+        fscanf(arq, " %[^\n]\n", biblioteca[i]->titulo);
+        fscanf(arq, " %[^\n]\n", biblioteca[i]->autor.nome);
+        
+        fscanf(arq, "%d %d %d\n", &biblioteca[i]->autor.data_nascimento.dia, &biblioteca[i]->autor.data_nascimento.mes, &biblioteca[i]->autor.data_nascimento.ano);
+                                  
+        fscanf(arq, "%d %d %d\n", &biblioteca[i]->data_escrita.dia, &biblioteca[i]->data_escrita.mes, &biblioteca[i]->data_escrita.ano);
+
+        descriptografar(biblioteca[i]->titulo);
+        i++;
+    }
+    
+    fclose(arq);
+    printf("\n✅ Pergaminho carregado com sucesso! %d livro(s) restaurado(s)!\n", i);
+}
+
+
+

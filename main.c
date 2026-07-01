@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
     char *nomeArquivo = argv[1];
     
     inicializarVetor(biblioteca);
+    carregarBiblioteca(biblioteca, nomeArquivo);
 
     int idBusca;
     int opcao;
@@ -50,6 +51,16 @@ int main(int argc, char *argv[]) {
             case 5:
                 printf("--- LISTA DE TITULOS MAGICOS ---\n");
                 listarTitulos(biblioteca);
+                break;
+
+            case 6:
+                printf("Salvando o progresso no pergaminho '%s'...\n", nomeArquivo);
+                salvarBiblioteca(biblioteca, nomeArquivo);
+                printf("Fechando os portoes da Biblioteca Magica. Ate logo!\n");
+                break;
+
+            default:
+                printf("Opcao invalida! Os sabios nao reconhecem este comando. Tente novamente.\n");
                 break;
         }
 
