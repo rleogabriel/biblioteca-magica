@@ -177,7 +177,7 @@ void editarLivro(LivroMagico **biblioteca, int idBusca)
             case 2:
                 strcpy(nome, biblioteca[i]->autor.nome);
                 printf("Digite o nome do autor que deseja colocar:");
-                canf(" %99[^\n]", biblioteca[i]->autor.nome);
+                scanf(" %99[^\n]", biblioteca[i]->autor.nome);
                 printf("\n");
                 printf(VERDE "======================================================\n" RESET);
                 printf(VERDE "                INFORMACOES ALTERADAS                 \n" RESET);
