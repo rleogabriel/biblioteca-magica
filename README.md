@@ -14,6 +14,12 @@ O projeto simula o backend de um jogo de RPG, responsável pelo gerenciamento do
 
 [GitHub do Projeto](https://github.com/rleogabriel/biblioteca-magica)
 
+## Vídeo de Apresentação
+
+O vídeo de apresentação demonstra o funcionamento do sistema, incluindo o uso do menu, cadastro, listagem, edição, exclusão, salvamento e carregamento dos livros cadastrados.
+
+[Assistir vídeo de apresentação no YouTube](https://youtu.be/xQJhtpNVRdE)
+
 ## Funcionalidades
 
 O sistema possui as seguintes funcionalidades principais:
